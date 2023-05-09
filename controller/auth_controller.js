@@ -20,7 +20,7 @@ exports.login = async (req, res) => {
   console.log("In POST login User ");
   try {
     const { email, password: inputPassword } = req.body;
-    console.log("In POST login User ", email, inputPassword);
+    // console.log("In POST login User ", email, inputPassword);
 
     const token = await authService.login(email, inputPassword);
 

@@ -11,7 +11,7 @@ exports.signup = async (name, email, password) => {
 
 exports.login = async (email, inputPassword) => {
   console.log("In Auth login  ");
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email, isActive: true }).select("+password");
   console.log("user " + user);
   if (!user) {
     throw new Error("User not found");
@@ -20,7 +20,9 @@ exports.login = async (email, inputPassword) => {
   if (!isMatch) {
     throw new Error("Invalid credentials");
   }
-  const token = jwt.sign({ _id: user._id, name: user.name }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1d",
+  });
   console.log("token " + token);
 
   await User.findOneAndUpdate({ _id: user._id }, { token: token });
@@ -38,10 +40,10 @@ exports.logout = async (id) => {
 exports.verifyToken = async (token) => {
   console.log("In Auth verifyToken ");
   const payload = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-  const user = await User.findOne({ _id: payload._id });
+  const user = await User.findOne({ _id: payload._id, isActive: true });
   if (!user) {
-    throw new Error("User not found");
-  } else if (!user.token) {
+    throw new Error("User not found or deactivated");
+  } else if (!user.token || user.token != token) {
     throw new Error("Access Denied. please login");
   }
 

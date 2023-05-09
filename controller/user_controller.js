@@ -17,7 +17,7 @@ exports.createUser = async (req, res) => {
 
 exports.getUserByEmail = async (req, res) => {
   try {
-    const { email, token } = req.body;
+    const { email } = req.body;
     if (!email) {
       throw new Error("Email is mandatory");
     } else {

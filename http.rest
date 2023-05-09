@@ -1,20 +1,9 @@
 
-GET http://localhost:3001/
-###
-
-GET http://localhost:3001/api/products
-
-
-###
-
-
-GET http://localhost:3001/api/v1/notes
-
 ###
 
 POST http://localhost:3001/api/user
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
 
 {
     "email":"anmol@gmail.com"
@@ -41,8 +30,8 @@ POST http://localhost:3001/api/auth/signup
 content-type: application/json
 
 {
-    "name": "Anmol3",
-    "email":"anmol3@gmail.com",
+    "name": "Anmol",
+    "email":"anmol@gmail.com",
     "password": "password@123"
 
 }
@@ -54,7 +43,7 @@ content-type: application/json
 
 {
     
-    "email":"anmol2@gmail.com",
+    "email":"anmol@gmail.com",
     "password": "password@123"
 
 }
@@ -63,4 +52,30 @@ content-type: application/json
 ###
 POST http://localhost:3001/api/auth/logout
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY 
+
+
+
+// Tags
+###
+POST http://localhost:3001/api/tag
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
+
+{
+    "name":"Artificial Intelligence"
+    
+
+}
+
+###
+GET http://localhost:3001/api/tag
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
+
+
+
+###
+GET http://localhost:3001/api/tag/645a45ad29205a5ac0046864
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
