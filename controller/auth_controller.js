@@ -1,9 +1,9 @@
-const { response } = require("express");
-const User = require("../model/user");
 const authService = require("../service/auth_service");
-const bcrypt = require("bcrypt");
+const AuthError = require("../errors/autherror");
+const mongoose = require("mongoose");
+const ValidationError = require("../errors/validation_error");
 
-exports.signup = async (req, res) => {
+exports.signup = async (req, res, next) => {
   console.log("In POST register User ");
   try {
     const { name, email, password } = req.body;
@@ -11,23 +11,25 @@ exports.signup = async (req, res) => {
     // console.log("user " + user);
     res.status(201).send({ id: _id });
   } catch (error) {
-    console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    if (error instanceof mongoose.Error.ValidationError) {
+      next(new ValidationError(error.message));
+    }
+    next(error);
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   console.log("In POST login User ");
   try {
     const { email, password: inputPassword } = req.body;
-    // console.log("In POST login User ", email, inputPassword);
-
     const token = await authService.login(email, inputPassword);
-
     res.status(200).send({ token: token });
   } catch (error) {
-    console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    if (error instanceof mongoose.Error.ValidationError) {
+      next(new ValidationError(error.message));
+    } else {
+      next(new AuthError("Invalid email or password"));
+    }
   }
 };
 

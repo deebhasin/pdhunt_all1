@@ -1,66 +1,56 @@
 
+@baseUrl = http://localhost:3001/api
+@user_id = 645a38389afc0e8369e2ff1d
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzcyMjQ1OCwiZXhwIjoxNjgzODA4ODU4fQ.wO5atanvtNwuEleeBjQCwhYGpy8VYuNpAZP8DragN8o
+
+
+@token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzVkYjcwZDFmOTU1MTYyNDVjZTkiLCJuYW1lIjoiQW5tb2wzIiwiZW1haWwiOiJhbm1vbDNAZ21haWwuY29tIiwiaWF0IjoxNjgzNzIyOTE4LCJleHAiOjE2ODM4MDkzMTh9.8sPZj03olHSbmqs6zGp2HbzcKOCKXkbRXI-82eYjhUM
+
 ###
 
-POST http://localhost:3001/api/user
+POST {{baseUrl}}/user
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
+Authorization: Bearer {{token}}
 
 {
     "email":"anmol@gmail.com"
-    
-
-}
-###
-
-POST https://pdhuntall1-production-8015.up.railway.app/api/user
-content-type: application/json
-
-{
-    "name": "DB2111",
-    "email":"db1112@gmail.com",
-    "password": "123456"
-
 }
 
-
-
-
 ###
-POST http://localhost:3001/api/auth/signup
+POST {{baseUrl}}/auth/signup
 content-type: application/json
 
 {
     "name": "Anmol",
     "email":"anmol@gmail.com",
     "password": "password@123"
-
 }
 
-
 ###
-POST http://localhost:3001/api/auth/login
+POST {{baseUrl}}/auth/login
 content-type: application/json
 
 {
     
-    "email":"anmol@gmail.com",
+    "email":"anmol3@gmail.com",
     "password": "password@123"
 
 }
 
 
 ###
-POST http://localhost:3001/api/auth/logout
+POST {{baseUrl}}/auth/logout
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU4ZWIxZjVhM2M5ODAzY2ZlMDgxYjYiLCJuYW1lIjoiQW5tb2wyIiwiaWF0IjoxNjgzNTUzMDI1LCJleHAiOjE2ODM1NTY2MjV9.tLlcWEzkOB0No7zqzPCOhMZc8iYgi7zvXMPX2kvQIzY 
+Authorization: Bearer {{token}}
 
 
 
 // Tags
 ###
-POST http://localhost:3001/api/tag
+POST {{baseUrl}}/tag
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
+Authorization: Bearer {{token}}
 
 {
     "name":"Artificial Intelligence"
@@ -69,13 +59,59 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzO
 }
 
 ###
-GET http://localhost:3001/api/tag
+GET {{baseUrl}}/tag
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
+Authorization: Bearer {{token}}
 
 
 
 ###
-GET http://localhost:3001/api/tag/645a45ad29205a5ac0046864
+GET {{baseUrl}}/tag/645a45ad29205a5ac0046864
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzYzNDM2OCwiZXhwIjoxNjgzNzIwNzY4fQ.a23HXbxmkMAneQXtkc2l8kVplDfhySkJdsvmZP41UmU
+Authorization: Bearer {{token}}
+
+###
+
+POST {{baseUrl}}/product
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name":"Upscale",
+    "description" : "Upscale is a sales engagement platform that helps sales teams build a consistent pipeline through structured prospecting. Eliminate random prospecting with multi-channel sequences. Identify activities that lead to conversations to book more qualified meetings.",
+    "shortDesc" : "Build a consistent pipeline to accelerate revenue generation",
+    "icon" : "https://ph-files.imgix.net/d1ab439d-e20a-4dab-9488-20177087c5c0.png",
+    "url" : "https://upscale.ai/"
+    
+}
+
+###
+
+PATCH {{baseUrl}}/product/645b90e767cceb1ea65920f0/vote
+content-type: application/json
+Authorization: Bearer {{token1}}
+
+{}
+
+###
+
+POST {{baseUrl}}/product/645b90e767cceb1ea65920f0/comment
+content-type: application/json
+Authorization: Bearer {{token1}}
+
+{
+    "text":"Not sure what led to a meeting the last time? Im growing Upscale.ai to help sales folks build a consistent pipeline and make revenue a predictable process. Now instead of staying in the dark about what activities are leading to conversations, try this: Structuring your outreach with multi-channel sequences Researching prospects to personalize conversations Automating follow-ups so that you never miss opportunities Tracing activities that lead to meaningful conversations Building and following your best practices for a consistent pipeline Upscale helps with all of this and much more. Take the 21-day free trial to believe it! Lets crush your revenue goals faster with Upscale   Note As a launch offer, were giving you 20% OFF on any paid plan! Also, Im here all day for any questions, feedback, and knowing your thoughts!"
+}
+
+
+###
+
+PATCH {{baseUrl}}/product/645b90e767cceb1ea65920f0/tag
+content-type: application/json
+Authorization: Bearer {{token1}}
+
+{
+    "tag" : "Open Source"
+}
+
+
