@@ -1,13 +1,22 @@
+const mongoose = require("mongoose");
 const Product = require("../model/product");
 const productService = require("../service/product_service");
+const ValidationError = require("../errors/validation_error");
 
-exports.createProduct = async (req, res) => {
+const handleErrors = (error, next) => {
+  console.log("In handleErrors product ");
+  if (error instanceof mongoose.Error.ValidationError) {
+    next(new ValidationError(error.message));
+  } else {
+    next(error);
+  }
+};
+
+exports.createProduct = async (req, res, next) => {
   try {
     const { name, description, icon, images, url, shortDesc } = req.body;
     const user = req.loggedInUser;
-    if (!user) {
-      throw new Error("User not found");
-    }
+
     const product = new Product({
       name,
       description,
@@ -23,55 +32,37 @@ exports.createProduct = async (req, res) => {
 
     res.status(201).send({ message: "Product created successfully" });
   } catch (error) {
-    console.log("error in product create  ", error);
-    res.status(400).send({ message: error.message });
+    handleErrors(error, next);
   }
 };
 
-exports.vote = async (req, res) => {
+exports.vote = async (req, res, next) => {
   try {
     await productService.upvote(req.params.id, req.loggedInUser._id);
 
     res.status(200).send({ message: "Product voted successfully" });
   } catch (error) {
-    // console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    handleErrors(error, next);
   }
 };
 
-exports.addComment = async (req, res) => {
+exports.addComment = async (req, res, next) => {
   try {
     await productService.addComment(req.params.id, req.body.text, req.loggedInUser._id);
 
     res.status(200).send({ message: "Comment added successfully" });
   } catch (error) {
-    // console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    handleErrors(error, next);
   }
 };
 
-exports.addTag = async (req, res) => {
+exports.addTag = async (req, res, next) => {
   try {
     console.log("req.body.tag, logged in user ", req.body.tag, req.loggedInUser._id);
     await productService.addTag(req.params.id, req.body.tag, req.loggedInUser._id);
 
     res.status(200).send({ message: "Tag added successfully" });
   } catch (error) {
-    // console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    handleErrors(error, next);
   }
 };
-
-// exports.getTagById = async (req, res) => {
-//   try {
-//     const tag = await tagService.getTagById(req.params.id);
-//     console.log("tag " + tag);
-//     if (!tag) {
-//       throw new Error("Tag not found");
-//     }
-//     res.status(200).send(tag);
-//   } catch (error) {
-//     console.log("error in user post ", error);
-//     res.status(400).send({ message: error.message });
-//   }
-// };

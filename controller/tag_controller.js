@@ -1,5 +1,16 @@
 const Tag = require("../model/tag");
 const tagService = require("../service/tag_service");
+const ValidationError = require("../errors/validation_error");
+const mongoose = require("mongoose");
+
+const handleErrors = (error, next) => {
+  console.log("In handleAuthErrors ");
+  if (error instanceof mongoose.Error.ValidationError) {
+    next(new ValidationError(error.message));
+  } else {
+    next(error);
+  }
+};
 
 exports.createTag = async (req, res) => {
   try {

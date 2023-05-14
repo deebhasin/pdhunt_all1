@@ -1,8 +1,9 @@
 
-@baseUrl = http://localhost:3001/api
+@baseUrl = http://localhost:3002/api
 @user_id = 645a38389afc0e8369e2ff1d
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzgzODlhZmMwZTgzNjllMmZmMWQiLCJuYW1lIjoiQW5tb2wiLCJlbWFpbCI6ImFubW9sQGdtYWlsLmNvbSIsImlhdCI6MTY4MzcyMjQ1OCwiZXhwIjoxNjgzODA4ODU4fQ.wO5atanvtNwuEleeBjQCwhYGpy8VYuNpAZP8DragN8o
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjZWFiNzBiMGYwNzgwYWZjZjcwN2EiLCJuYW1lIjoiQW5tb2wyIiwiZW1haWwiOiJhbm1vbDJAZ21haWwuY29tIiwiaWF0IjoxNjgzODExMDI0LCJleHAiOjE2ODM4OTc0MjR9.k3a-Za9DVJdvAQi1BW-rw02Ew6HqsYT1WC1t85REDIg
+
 
 
 @token1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVhMzVkYjcwZDFmOTU1MTYyNDVjZTkiLCJuYW1lIjoiQW5tb2wzIiwiZW1haWwiOiJhbm1vbDNAZ21haWwuY29tIiwiaWF0IjoxNjgzNzIyOTE4LCJleHAiOjE2ODM4MDkzMTh9.8sPZj03olHSbmqs6zGp2HbzcKOCKXkbRXI-82eYjhUM
@@ -14,7 +15,7 @@ content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "email":"anmol@gmail.com"
+    "email":"anmol2@gmail.com"
 }
 
 ###
@@ -22,8 +23,8 @@ POST {{baseUrl}}/auth/signup
 content-type: application/json
 
 {
-    "name": "Anmol",
-    "email":"anmol@gmail.com",
+    "name": "Anmol2",
+    "email":"anmol2@gmail.com",
     "password": "password@123"
 }
 
@@ -31,18 +32,16 @@ content-type: application/json
 POST {{baseUrl}}/auth/login
 content-type: application/json
 
-{
-    
-    "email":"anmol3@gmail.com",
+{    
+    "email":"anmol2@gmail.com",
     "password": "password@123"
-
 }
 
 
 ###
 POST {{baseUrl}}/auth/logout
 content-type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{token1}}
 
 
 
@@ -89,9 +88,9 @@ Authorization: Bearer {{token}}
 
 PATCH {{baseUrl}}/product/645b90e767cceb1ea65920f0/vote
 content-type: application/json
-Authorization: Bearer {{token1}}
+Authorization: Bearer {{token}}
 
-{}
+
 
 ###
 

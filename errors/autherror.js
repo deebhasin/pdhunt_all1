@@ -3,6 +3,7 @@ class AuthError extends Error {
     super(message);
     this.message = message;
     this.status = 401;
+    this.isOperational = true;
   }
 
   toString() {

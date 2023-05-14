@@ -1,7 +1,7 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
-const AuthError = require("./errors/autherror");
-const ValidationError = require("./errors/validation_error");
+const errorController = require("./controller/error_controller");
 
 const dbUtils = require("./utils/dbutils");
 
@@ -14,26 +14,24 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 dbUtils.initDB();
+
 app.use(express.json());
+app.use(cors());
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/tag", tagRouter);
 app.use("/api/product", productRouter);
-app.use(errorHandler);
+app.use(errorController.handleErrors);
 
-function errorHandler(err, req, res, next) {
-  console.log("In error handler ", err);
-  if (err instanceof AuthError) {
-    console.log("In auth error handler ");
-    return res.status(err.status).send({ message: err.message });
-  } else if (err instanceof ValidationError) {
-    console.log("In validation error handler ");
-    return res.status(err.status).send({ message: err.message });
-  }
+process.on("SIGINT", () => {
+  dbUtils.disconnectDB();
+  console.log("Closing server");
+  process.exit();
+});
 
-  console.log("In error handler ", err);
-  res.status(500).send({ message: err.message });
-}
+process.on("exit", () => {
+  console.log("Server closed");
+});
 
 app.listen(PORT, () => {
   console.log("Server is running on port ", PORT);

@@ -3,6 +3,15 @@ const AuthError = require("../errors/autherror");
 const mongoose = require("mongoose");
 const ValidationError = require("../errors/validation_error");
 
+const handleErrors = (error, next) => {
+  console.log("In handleAuthErrors ");
+  if (error instanceof mongoose.Error.ValidationError) {
+    next(new ValidationError(error.message));
+  } else {
+    next(error);
+  }
+};
+
 exports.signup = async (req, res, next) => {
   console.log("In POST register User ");
   try {
@@ -11,10 +20,7 @@ exports.signup = async (req, res, next) => {
     // console.log("user " + user);
     res.status(201).send({ id: _id });
   } catch (error) {
-    if (error instanceof mongoose.Error.ValidationError) {
-      next(new ValidationError(error.message));
-    }
-    next(error);
+    handleErrors(error, next);
   }
 };
 
@@ -25,23 +31,18 @@ exports.login = async (req, res, next) => {
     const token = await authService.login(email, inputPassword);
     res.status(200).send({ token: token });
   } catch (error) {
-    if (error instanceof mongoose.Error.ValidationError) {
-      next(new ValidationError(error.message));
-    } else {
-      next(new AuthError("Invalid email or password"));
-    }
+    handleErrors(error, next);
   }
 };
 
-exports.logout = async (req, res) => {
+exports.logout = async (req, res, next) => {
   try {
     let loggedInUser = req.loggedInUser;
 
     await authService.logout(loggedInUser._id);
     res.status(200).send({ message: "Logged out successfully" });
   } catch (error) {
-    console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    handleErrors(error, next);
   }
 };
 
@@ -59,7 +60,6 @@ exports.verifyToken = async (req, res, next) => {
     req.loggedInUser = user;
     next();
   } catch (error) {
-    console.log("error in user post ", error);
-    res.status(400).send({ message: error.message });
+    handleErrors(error, next);
   }
 };

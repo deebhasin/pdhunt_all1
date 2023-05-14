@@ -3,6 +3,7 @@ class ValidationError extends Error {
     super(message);
     this.message = message;
     this.status = 400;
+    this.isOperational = true;
   }
 
   toString() {
