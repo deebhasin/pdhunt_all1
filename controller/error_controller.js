@@ -1,5 +1,7 @@
+const logger = require("../utils/logger");
+
 exports.handleErrors = (err, req, res, next) => {
-  console.log("In error handler ", err);
+  logger.error("In error handler ", err);
   const node_env = process.env.NODE_ENV || "development";
   if (node_env === "production") {
     sendErrorProd(err, req, res);
@@ -27,7 +29,7 @@ function sendErrorProd(err, req, res) {
     });
   } else {
     // Programming or other unknown error: don't leak error details
-    console.error("ERROR 💥", err);
+    logger.error("ERROR 💥", err);
     res.status(500).json({
       status: "error",
       message: "Something went wrong!. Please try again later",

@@ -44,12 +44,16 @@ exports.logout = async (id) => {
 
 exports.verifyToken = async (token) => {
   console.log("In Auth verifyToken ", token);
-  const payload = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-  const user = await User.findOne({ _id: payload._id, isActive: true }).select("+token");
-  if (!user) {
-    throw new AuthError("User not found or deactivated");
-  } else if (!user.token || user.token != token) {
-    throw new AuthError("Access Denied. please login");
+  try {
+    const payload = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const user = await User.findOne({ _id: payload._id, isActive: true }).select("+token");
+    if (!user) {
+      throw new AuthError("User not found or deactivated");
+    } else if (!user.token || user.token != token) {
+      throw new AuthError("Access Denied. please login");
+    }
+    return user;
+  } catch (err) {
+    throw new AuthError(err.message);
   }
-  return user;
 };

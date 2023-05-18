@@ -2,3 +2,5 @@
 node_modules
 http.rest
 server.rest
+logs
+uploads

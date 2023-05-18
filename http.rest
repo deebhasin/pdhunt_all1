@@ -1,5 +1,5 @@
 
-@baseUrl = http://localhost:3002/api
+@baseUrl = http://localhost:3004/api
 @user_id = 645a38389afc0e8369e2ff1d
 
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDVjZWFiNzBiMGYwNzgwYWZjZjcwN2EiLCJuYW1lIjoiQW5tb2wyIiwiZW1haWwiOiJhbm1vbDJAZ21haWwuY29tIiwiaWF0IjoxNjgzODExMDI0LCJleHAiOjE2ODM4OTc0MjR9.k3a-Za9DVJdvAQi1BW-rw02Ew6HqsYT1WC1t85REDIg
@@ -23,8 +23,8 @@ POST {{baseUrl}}/auth/signup
 content-type: application/json
 
 {
-    "name": "Anmol2",
-    "email":"anmol2@gmail.com",
+    "name": "Anmol15",
+    "email":"anmol15@gmail.com",
     "password": "password@123"
 }
 
@@ -114,4 +114,28 @@ Authorization: Bearer {{token1}}
     "tag" : "Open Source"
 }
 
+###
+POST {{baseUrl}}/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="text"
+
+title
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="fileName"; filename="server.rest"
+Content-Type: text/plain
+
+< ./server.rest
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+###
+
+GET {{baseUrl}}/
+content-type: application/json
+
+###
+
+POST {{baseUrl}}/loglevel/debug
+content-type: application/json

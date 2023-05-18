@@ -14,9 +14,13 @@ const initDB = () => {
     });
 };
 
+const isConnected = () => {
+  return mongoose.connection.readyState === 1;
+};
+
 const disconnectDB = () => {
   mongoose.disconnect();
   console.log("Database disconnected successfully");
 };
 
-module.exports = { initDB, disconnectDB };
+module.exports = { initDB, disconnectDB, isConnected };

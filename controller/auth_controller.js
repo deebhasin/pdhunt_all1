@@ -1,11 +1,15 @@
 const authService = require("../service/auth_service");
 const AuthError = require("../errors/autherror");
 const mongoose = require("mongoose");
+const logger = require("../utils/logger");
+
 const ValidationError = require("../errors/validation_error");
 
 const handleErrors = (error, next) => {
-  console.log("In handleAuthErrors ");
+  logger.debug("In handleAuthErrors ");
   if (error instanceof mongoose.Error.ValidationError) {
+    next(new ValidationError(error.message));
+  } else if (error.code && error.code == 11000) {
     next(new ValidationError(error.message));
   } else {
     next(error);
@@ -13,11 +17,11 @@ const handleErrors = (error, next) => {
 };
 
 exports.signup = async (req, res, next) => {
-  console.log("In POST register User ");
+  logger.debug("In POST register User ");
   try {
     const { name, email, password } = req.body;
     const _id = await authService.signup(name, email, password);
-    // console.log("user " + user);
+    // logger.debug("user " + user);
     res.status(201).send({ id: _id });
   } catch (error) {
     handleErrors(error, next);
@@ -25,7 +29,7 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-  console.log("In POST login User ");
+  logger.debug("In POST login User ");
   try {
     const { email, password: inputPassword } = req.body;
     const token = await authService.login(email, inputPassword);
@@ -48,13 +52,13 @@ exports.logout = async (req, res, next) => {
 
 exports.verifyToken = async (req, res, next) => {
   try {
-    console.log("In verifyToken ", req.headers);
+    logger.debug("In verifyToken ", req.headers);
     const authHeader = req.headers["authorization"];
     if (!authHeader) throw new Error({ message: "Access Denied. Please send Token" });
 
     const token = authHeader.split(" ")[1];
     if (!token) throw new Error({ message: "Access Denied. Please send Token" });
-    console.log("token " + token);
+    logger.debug("token " + token);
 
     const user = await authService.verifyToken(token);
     req.loggedInUser = user;
