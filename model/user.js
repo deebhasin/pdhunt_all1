@@ -7,6 +7,11 @@ const userSchema = new mongoose.Schema({
     trim: true,
     required: true,
     maxlength: 200,
+    validate: {
+      validator: function (value) {
+        return /^[a-zA-Z0-9 .]+$/.test(value);
+      },
+    },
   },
 
   password: {
@@ -31,6 +36,11 @@ const userSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     default: true,
+  },
+  role: {
+    type: String,
+    enum: ["admin", "user", "manager"],
+    default: "user",
   },
 });
 

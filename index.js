@@ -5,6 +5,7 @@ const errorController = require("./controller/error_controller");
 const multer = require("multer");
 const morgan = require("morgan");
 const logger = require("./utils/logger");
+var xss = require("xss-clean");
 const swaggerUi = require("swagger-ui-express"),
   swaggerDocument = require("./swagger.json");
 
@@ -14,6 +15,7 @@ const userRouter = require("./routes/user_route");
 const authRouter = require("./routes/auth_route");
 const tagRouter = require("./routes/tag_route");
 const productRouter = require("./routes/product_route");
+const orderRouter = require("./routes/order_route");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -43,10 +45,13 @@ const morganMiddleware = morgan(
   }
 );
 app.use(morganMiddleware);
-app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use(xss());
+app.use("/api/user", userRouter);
+
 app.use("/api/tag", tagRouter);
 app.use("/api/product", productRouter);
+app.use("/api/order", orderRouter);
 app.use(errorController.handleErrors);
 
 const storage = multer.diskStorage({

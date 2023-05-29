@@ -3,9 +3,9 @@ const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const AuthError = require("../errors/autherror");
 
-exports.signup = async (name, email, password) => {
+exports.signup = async (name, email, password, role) => {
   console.log("In Auth SignUp  ");
-  const user = new User({ name, email, password });
+  const user = new User({ name, email, password, role });
   await user.save();
   return user._id;
 };

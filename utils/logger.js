@@ -42,9 +42,9 @@ logger.exitOnError = false;
 logger.error("error");
 logger.warn("warn");
 logger.info("info");
-logger.verbose("verbose");
+// logger.verbose("verbose");
 logger.debug("debug");
-logger.silly("silly");
+// logger.silly("silly");
 
 logger.log("error", "error message");
 logger.log("info", "info message");

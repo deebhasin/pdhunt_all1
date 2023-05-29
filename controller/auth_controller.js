@@ -19,8 +19,8 @@ const handleErrors = (error, next) => {
 exports.signup = async (req, res, next) => {
   logger.debug("In POST register User ");
   try {
-    const { name, email, password } = req.body;
-    const _id = await authService.signup(name, email, password);
+    const { name, email, password, role } = req.body;
+    const _id = await authService.signup(name, email, password, role);
     // logger.debug("user " + user);
     res.status(201).send({ id: _id });
   } catch (error) {
@@ -66,4 +66,16 @@ exports.verifyToken = async (req, res, next) => {
   } catch (error) {
     handleErrors(error, next);
   }
+};
+
+exports.authorize = (roles) => {
+  return (req, res, next) => {
+    const user = req.loggedInUser;
+    logger.debug("In authorize " + user);
+    if (roles.includes(user.role)) {
+      next();
+    } else {
+      next(new AuthError("Access Denied. You are not authorized", 403));
+    }
+  };
 };
