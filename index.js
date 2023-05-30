@@ -82,6 +82,17 @@ app.get("/api/", (req, res) => {
   res.status(200).json(response);
 });
 
+app.get("/", (req, res) => {
+  const dbStatus = dbUtils.isConnected();
+
+  const response = {
+    message: "Express Server is UP and DB is connected : " + dbStatus,
+    status: dbStatus ? "OK" : "ERROR",
+  };
+
+  res.status(200).json(response);
+});
+
 app.get("/api/retry", (req, res) => {
   dbUtils.initDB();
 

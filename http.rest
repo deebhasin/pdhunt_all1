@@ -1,8 +1,8 @@
 
-@baseUrl = http://localhost:3004/api
+@baseUrl = https://pdhunt.onrender.com/api
 @user_id = 645a38389afc0e8369e2ff1d
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDZmMjM4ZWNmNzcyN2E2Y2QzMzU5YzciLCJuYW1lIjoiVmluYXkzIiwiZW1haWwiOiJ2aW5heTNAZ21haWwuY29tIiwiaWF0IjoxNjg1MDA1NjI4LCJleHAiOjE2ODUwOTIwMjh9.o7Dfw8H7d0EPT0uAWvxBwMXa-APW-ukrshQ73t4wW3E
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDZmMjM4ZWNmNzcyN2E2Y2QzMzU5YzciLCJuYW1lIjoiVmluYXkzIiwiZW1haWwiOiJ2aW5heTNAZ21haWwuY29tIiwiaWF0IjoxNjg1NDQ3MDQ0LCJleHAiOjE2ODU1MzM0NDR9.0Nr7qVMFsJ8x4pn24_-o7dRgzAl7H4j3SpX9icOJU6c
 
 
 
