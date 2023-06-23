@@ -33,4 +33,9 @@ const addTag = async (productId, tag, loggedInUserId) => {
   await product.addTag(tag);
 };
 
-module.exports = { createProduct, getProductById, upvote, addComment, addTag };
+const getProducts = async () => {
+  const products = await Product.find();
+  return products;
+};
+
+module.exports = { createProduct, getProductById, upvote, addComment, addTag, getProducts };

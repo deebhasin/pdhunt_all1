@@ -9,7 +9,14 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "pdhunt.onrender.com:3004",
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "host": "localhost:3004",
   "basePath": "/api",
   "tags": [
     {
@@ -20,6 +27,7 @@
   "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"],
+  "security": [{ "Bearer": [] }],
   "paths": {
     "/auth/signup": {
       "post": {
@@ -98,7 +106,7 @@
           "in": "path",
           "required": true,
           "description": "ID of user that we want to find",
-          "type": "integer"
+          "type": "string"
         }
       ],
       "delete": {

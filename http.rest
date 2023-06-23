@@ -1,8 +1,10 @@
 
-@baseUrl = https://pdhunt.onrender.com/api
+# @baseUrl = http://localhost:3004/api
+
+@baseUrl =https://pdhuntall1-production-abfe.up.railway.app/api
 @user_id = 645a38389afc0e8369e2ff1d
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDZmMjM4ZWNmNzcyN2E2Y2QzMzU5YzciLCJuYW1lIjoiVmluYXkzIiwiZW1haWwiOiJ2aW5heTNAZ21haWwuY29tIiwiaWF0IjoxNjg1NDQ3MDQ0LCJleHAiOjE2ODU1MzM0NDR9.0Nr7qVMFsJ8x4pn24_-o7dRgzAl7H4j3SpX9icOJU6c
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDk1NWZkZDQ1Zjc0ZDA5MGYwYjg5YjUiLCJuYW1lIjoiZGIiLCJlbWFpbCI6ImRiQGdtYWlsLmNvbSIsImlhdCI6MTY4NzUxMTAxNSwiZXhwIjoxNjg3NTk3NDE1fQ.tSVmXC8wgakrrk7lA5mAMzjAI1OPppU1Jn5uaH05MWE
 
 
 
@@ -10,12 +12,12 @@
 
 ###
 
-POST {{baseUrl}}/user
+GET  {{baseUrl}}/user
 content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "email":"vinay1@gmail.com"
+    "email":"db12@gmail.com"
 }
 
 ###
@@ -23,8 +25,8 @@ POST {{baseUrl}}/auth/signup
 content-type: application/json
 
 {
-    "name": "Vinay3",
-    "email":"vinay3@gmail.com",
+    "name": "db",
+    "email":"db@gmail.com",
     "password": "password@123",
     "role": "admin"
 }
@@ -34,7 +36,7 @@ POST {{baseUrl}}/auth/login
 content-type: application/json
 
 {    
-    "email":"vinay3@gmail.com",
+    "email":"db@gmail.com",
     "password": "password@123"
 }
 
@@ -59,7 +61,7 @@ Authorization: Bearer {{token}}
 }
 
 ###
-GET {{baseUrl}}/tag
+GET {{baseUrl}}/product
 content-type: application/json
 Authorization: Bearer {{token}}
 

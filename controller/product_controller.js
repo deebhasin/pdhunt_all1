@@ -12,6 +12,15 @@ const handleErrors = (error, next) => {
   }
 };
 
+exports.getProducts = async (req, res, next) => {
+  try {
+    const products = await productService.getProducts();
+    res.status(200).send(products);
+  } catch (error) {
+    handleErrors(error, next);
+  }
+};
+
 exports.createProduct = async (req, res, next) => {
   try {
     const { name, description, icon, images, url, shortDesc } = req.body;
