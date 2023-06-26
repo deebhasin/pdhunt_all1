@@ -5,6 +5,7 @@ const productController = require("../controller/product_controller");
 const { verifyToken } = require("../controller/auth_controller");
 
 router.route("/").get(productController.getProducts);
+router.route("/:id").get(productController.getProductById);
 router.route("/").post(verifyToken, productController.createProduct);
 
 router.route("/:id/vote").patch(verifyToken, productController.vote);

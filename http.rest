@@ -4,7 +4,7 @@
 @baseUrl =https://pdhuntall1-production-abfe.up.railway.app/api
 @user_id = 645a38389afc0e8369e2ff1d
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDk1NWZkZDQ1Zjc0ZDA5MGYwYjg5YjUiLCJuYW1lIjoiZGIiLCJlbWFpbCI6ImRiQGdtYWlsLmNvbSIsImlhdCI6MTY4NzUxMTAxNSwiZXhwIjoxNjg3NTk3NDE1fQ.tSVmXC8wgakrrk7lA5mAMzjAI1OPppU1Jn5uaH05MWE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDk1NWZkZDQ1Zjc0ZDA5MGYwYjg5YjUiLCJuYW1lIjoiZGIiLCJlbWFpbCI6ImRiQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzc1ODQ1OCwiZXhwIjoxNjg3ODQ0ODU4fQ.iP_x1qLEZWpn_x4kXelKoxmpjLi4i5HObi7Y97sGhrY
 
 
 
@@ -79,13 +79,19 @@ content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name":"Upscale",
-    "description" : "Upscale is a sales engagement platform that helps sales teams build a consistent pipeline through structured prospecting. Eliminate random prospecting with multi-channel sequences. Identify activities that lead to conversations to book more qualified meetings.",
-    "shortDesc" : "Build a consistent pipeline to accelerate revenue generation",
-    "icon" : "https://ph-files.imgix.net/d1ab439d-e20a-4dab-9488-20177087c5c0.png",
-    "url" : "https://upscale.ai/"
+    "name":"subs",
+    "description" : "Drowning in subscriptions? Meet Subs! Your all-in-one tool for managing subscriptions. Get push notifications about due dates, keep track of spending, and never be surprised by payments. Subs makes managing your subscriptions as easy as breathing.",
+    "shortDesc": "Put a stop to the subscription chaos",
+    "icon" : "https://ph-files.imgix.net/b168f3f4-7376-44c3-aa82-8563ac135e50.png",
+    "url" : "https://www.producthunt.com/posts/subs-2"
     
 }
+
+###
+
+GET {{baseUrl}}/product/645b90e767cceb1ea65920f0
+content-type: application/json
+
 
 ###
 

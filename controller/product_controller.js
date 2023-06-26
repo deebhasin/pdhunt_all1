@@ -21,6 +21,15 @@ exports.getProducts = async (req, res, next) => {
   }
 };
 
+exports.getProductById = async (req, res, next) => {
+  try {
+    const product = await productService.getProductById(req.params.id);
+    res.status(200).send(product);
+  } catch (error) {
+    handleErrors(error, next);
+  }
+};
+
 exports.createProduct = async (req, res, next) => {
   try {
     const { name, description, icon, images, url, shortDesc } = req.body;
